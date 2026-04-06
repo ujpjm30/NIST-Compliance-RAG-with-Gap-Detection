@@ -97,3 +97,8 @@ Controls are evicted from the prompt if not cited in the last two turns, replace
 **Problem**: Setting arbitrary similarity thresholds leads to false positives.
 
 **Solution**: Established a dual-threshold system: `THRESHOLD_FULL` (High precision for direct answers) and `THRESHOLD_PARTIAL` (Lower precision for "related info" warnings). These are calibrated using a Gold Standard dataset of known NIST mappings to minimize the "Confidently Wrong" error rate.
+
+
+https://gemini.google.com/share/0afd74138f4d
+https://gemini.google.com/share/9699db56d933
+https://gemini.google.com/share/ffe14b750628

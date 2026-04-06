@@ -1,0 +1,77 @@
+[
+  {
+    "query": "Is the organization's access control policy aligned with industry best practices?",
+    "expected": "FULLY_SUPPORTED",
+    "rationale": "The answer can be derived solely from AC family controls"
+  },
+  {
+    "query": "Does the incident response plan include procedures for containing and eradicating malware?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "rationale": "The IR family provides partial support, but other families may also be relevant"
+  },
+  {
+    "query": "Are all system configurations verified against a known good configuration before being placed into production?",
+    "expected": "FULLY_SUPPORTED",
+    "rationale": "CM family controls fully address this requirement"
+  },
+  {
+    "query": "Does the organization have a process for identifying and authenticating users attempting to access sensitive information?",
+    "expected": "FULLY_SUPPORTED",
+    "rationale": "IA family controls provide complete guidance"
+  },
+  {
+    "query": "Are audit logs reviewed regularly to detect and respond to security incidents?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "rationale": "AU family controls partially address this requirement, but other families may also be relevant"
+  },
+  {
+    "query": "Does the organization's system and communication protection plan include procedures for detecting and responding to insider threats?",
+    "expected": "FULLY_SUPPORTED",
+    "rationale": "SC family controls fully support this requirement"
+  },
+  {
+    "query": "Are all software updates applied within a reasonable timeframe to minimize vulnerabilities?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "rationale": "CM and SC families provide partial support, but other families may also be relevant"
+  },
+  {
+    "query": "Does the organization have a process for identifying and responding to potential security incidents based on audit logs?",
+    "expected": "FULLY_SUPPORTED",
+    "rationale": "AU family controls provide complete guidance"
+  },
+  {
+    "query": "Are all system components verified against a known good configuration before being placed into production?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "rationale": "CM and SC families provide partial support, but other families may also be relevant"
+  },
+  {
+    "query": "Does the organization's incident response plan include procedures for recovering from security incidents?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "rationale": "IR family controls partially address this requirement, but other families may also be relevant"
+  },
+  {
+    "query": "Are all user accounts regularly reviewed to detect and respond to potential security threats?",
+    "expected": "FULLY_SUPPORTED",
+    "rationale": "AC family controls fully support this requirement"
+  },
+  {
+    "query": "Does the organization have a process for identifying and responding to potential security incidents based on system logs?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "rationale": "AU and IR families provide partial support, but other families may also be relevant"
+  },
+  {
+    "query": "Are all network devices regularly updated with the latest software patches?",
+    "expected": "FULLY_SUPPORTED",
+    "rationale": "SC family controls fully address this requirement"
+  },
+  {
+    "query": "Does the organization have a process for identifying and responding to potential security incidents based on configuration changes?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "rationale": "AU and CM families provide partial support, but other families may also be relevant"
+  },
+  {
+    "query": "Are all system components regularly reviewed to detect and respond to potential security threats?",
+    "expected": "NO_INFORMATION",
+    "rationale": "Only excluded families (e.g., SA, SR) would provide guidance"
+  }
+]

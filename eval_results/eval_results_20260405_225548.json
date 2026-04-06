@@ -1,0 +1,122 @@
+[
+  {
+    "query": "Is the organization's access control policy aligned with industry best practices?",
+    "expected": "FULLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.5686,
+    "match": false,
+    "answer_preview": "The organization's access control policy is developed, documented, and disseminated to organization-defined personnel or roles [AC-1]. This policy add"
+  },
+  {
+    "query": "Does the incident response plan include procedures for containing and eradicating malware?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.4742,
+    "match": true,
+    "answer_preview": "The incident response plan does not explicitly state procedures for containing and eradicating malware. However, it is implied that such procedures wo"
+  },
+  {
+    "query": "Are all system configurations verified against a known good configuration before being placed into production?",
+    "expected": "FULLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.4907,
+    "match": false,
+    "answer_preview": "Based on the provided context, it can be inferred that not all system configurations are verified against a known good configuration before being plac"
+  },
+  {
+    "query": "Does the organization have a process for identifying and authenticating users attempting to access sensitive information?",
+    "expected": "FULLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.6008,
+    "match": false,
+    "answer_preview": "The organization must uniquely identify and authenticate organizational users and associate that unique identification with processes acting on behalf"
+  },
+  {
+    "query": "Are audit logs reviewed regularly to detect and respond to security incidents?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.4457,
+    "match": true,
+    "answer_preview": "Based on the provided context, it can be inferred that audit logs are not explicitly stated as being reviewed regularly to detect and respond to secur"
+  },
+  {
+    "query": "Does the organization's system and communication protection plan include procedures for detecting and responding to insider threats?",
+    "expected": "FULLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.4385,
+    "match": false,
+    "answer_preview": "The organization's system and communications protection plan does not explicitly address procedures for detecting and responding to insider threats. ["
+  },
+  {
+    "query": "Are all software updates applied within a reasonable timeframe to minimize vulnerabilities?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "actual": "NO_INFORMATION",
+    "top_score": 0.2855,
+    "match": false,
+    "answer_preview": "I'm sorry, but I couldn't find any relevant information in the NIST 800-53 catalog regarding your request."
+  },
+  {
+    "query": "Does the organization have a process for identifying and responding to potential security incidents based on audit logs?",
+    "expected": "FULLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.5275,
+    "match": false,
+    "answer_preview": "Based on the provided context from NIST 800-53 catalog, it can be inferred that the organization has a process for identifying and responding to poten"
+  },
+  {
+    "query": "Are all system components verified against a known good configuration before being placed into production?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.4362,
+    "match": true,
+    "answer_preview": "Based on the provided context from NIST 800-53 catalog, it can be inferred that:\n\nThe organization must verify all system components against a known g"
+  },
+  {
+    "query": "Does the organization's incident response plan include procedures for recovering from security incidents?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "actual": "FULLY_SUPPORTED",
+    "top_score": 0.566,
+    "match": false,
+    "answer_preview": "The organization's incident response plan includes procedures for developing an incident response policy that addresses recovery from security inciden"
+  },
+  {
+    "query": "Are all user accounts regularly reviewed to detect and respond to potential security threats?",
+    "expected": "FULLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.4593,
+    "match": false,
+    "answer_preview": "The organization must review all user accounts regularly to detect and respond to potential security threats. This includes monitoring account creatio"
+  },
+  {
+    "query": "Does the organization have a process for identifying and responding to potential security incidents based on system logs?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.5025,
+    "match": true,
+    "answer_preview": "Based on the provided context, it can be concluded that the organization has a process for identifying and responding to potential security incidents "
+  },
+  {
+    "query": "Are all network devices regularly updated with the latest software patches?",
+    "expected": "FULLY_SUPPORTED",
+    "actual": "NO_INFORMATION",
+    "top_score": 0.2765,
+    "match": false,
+    "answer_preview": "I'm sorry, but I couldn't find any relevant information in the NIST 800-53 catalog regarding your request."
+  },
+  {
+    "query": "Does the organization have a process for identifying and responding to potential security incidents based on configuration changes?",
+    "expected": "PARTIALLY_SUPPORTED",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.4678,
+    "match": true,
+    "answer_preview": "Based on the provided context, it appears that the organization has a process for identifying and responding to potential security incidents based on "
+  },
+  {
+    "query": "Are all system components regularly reviewed to detect and respond to potential security threats?",
+    "expected": "NO_INFORMATION",
+    "actual": "PARTIALLY_SUPPORTED",
+    "top_score": 0.3666,
+    "match": false,
+    "answer_preview": "Based on the provided context from NIST 800-53 catalog, it can be inferred that not all system components are regularly reviewed to detect and respond"
+  }
+]

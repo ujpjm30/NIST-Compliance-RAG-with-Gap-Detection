@@ -39,8 +39,6 @@ Gemini: (Original Response Content...)
 User: I’ve implemented faiss.IndexFlatIP with L2 normalization to simulate cosine similarity. For a production-scale compliance database, would switching to an HNSW index significantly impact recall, and how should I approach the trade-off?
 Gemini: (Original Response Content...)
 
-(중략: 위에서 사용자가 주신 모든 질문과 대답 내용을 이 섹션에 순서대로 붙여넣으시면 됩니다.)
-
 User: To ensure strict citation adherence, I’m using a zero-temperature setting and a detailed system prompt. How can I further constrain the model to ensure it never hallucinations a [Control_ID] that doesn't exist in the provided context window?
 Gemini: (Original Response Content...)
 

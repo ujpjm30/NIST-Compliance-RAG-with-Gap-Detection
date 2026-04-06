@@ -1,19 +1,6 @@
 # CHAT_LOGS.md
 
-## 1. Executive Summary: AI Collaboration & Problem Definition
-
-This document outlines the technical collaboration with **Gemini (Google AI)** to develop a NIST 800-53 RAG Pipeline. The interaction focused on solving high-level ML engineering challenges, including Gap Detection, Citation Integrity, and System Scalability.
-
-### Key Technical Decisions & Problem Framing
-
-- **Data Strategy**: Addressed the hierarchical nature of NIST controls by discussing recursive chunking vs. simple truncation to preserve sub-control context (e.g., AC-2(1)).
-- **Gap Detection (The Core Challenge)**: Defined a dual-threshold system (`THRESHOLD_FULL` & `THRESHOLD_PARTIAL`) to identify information gaps. Explored Natural Language Inference (NLI) as a robust alternative to simple vector distance for classifying `PARTIALLY_SUPPORTED` cases.
-- **Hallucination Guardrails**: Implemented structural constraints including XML tagging (`<control id="...">`) and strict system prompting to ensure the model never cites a non-existent Control ID.
-- **Engineering Robustness**: Resolved environment-specific issues (Mac M1/M2 Segmentation Faults) by configuring `OMP_NUM_THREADS` and optimized the evaluation suite for parallel execution.
-
----
-
-## 2. Categorized Discussion Logs
+## 1. Categorized Discussion Logs
 
 ### A. Data Ingestion & Retrieval Optimization
 
@@ -35,7 +22,7 @@ This document outlines the technical collaboration with **Gemini (Google AI)** t
 
 ---
 
-## 3. Full Discussion Topics
+## 2. Full Discussion Topics
 
 ### I. Data Engineering & Ingestion Pipeline
 

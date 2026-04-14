@@ -1,7 +1,5 @@
 # NIST 800-53 RAG Pipeline with Gap Detection
 
-Take-home project for **Lume Security — ML Engineer** role.
-
 **Jimin Park**
 
 ---

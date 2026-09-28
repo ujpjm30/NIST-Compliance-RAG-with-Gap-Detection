@@ -1,7 +1,5 @@
 # NIST 800-53 RAG Pipeline with Gap Detection
 
-**Jimin Park**
-
 ## Run locally
 
 Use the project's Python environment and start the Ollama application with `llama3` installed. Model files must be downloaded before offline use.

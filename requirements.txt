@@ -1,4 +1,6 @@
 pandas
+numpy
+ollama
 langchain-core
 langchain-community
 langchain-huggingface

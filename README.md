@@ -1,153 +1,112 @@
 # NIST 800-53 RAG Pipeline with Gap Detection
 
-Take-home project for **Lume Security — ML Engineer** role.
-
 **Jimin Park**
 
----
+## Run locally
 
-## Quick Start (< 5 minutes)
-
-### 1. Install dependencies
+Use the project's Python environment and start the Ollama application with `llama3` installed. Model files must be downloaded before offline use.
 
 ```bash
-pip install pandas sentence-transformers faiss-cpu numpy ollama
-```
-
-### 2. Pull the local LLM
-
-```bash
+source .venv/bin/activate
+pip install -r requirements.txt
 ollama pull llama3
-# Ensure Ollama is running in the background before execution
-```
-
-### 3. Build the index
-
-The system uses a curated dataset of 30 controls to test gap detection.
-
-```bash
 python ingestion.py
-```
-
-### 4. Run the assistant
-
-```bash
 python main.py
 ```
 
-### 5. Run automated evaluation
+On this Mac, if `ollama` launches the GUI instead of the command-line tool, use `/usr/local/bin/ollama` for CLI commands. The ingestion and retrieval code limit native worker threads on macOS because the installed native libraries previously crashed during encoding.
+
+`main.py` accepts arbitrary customer questions. Evaluation questions do not restrict what customers can ask.
+
+## Corpus and chunking
+
+The input is `data/NIST_SP-800-53_rev5_catalog_load.csv`, the local Rev 5 snapshot: 1,189 entries across 20 families (322 base entries and 867 enhancements). This includes 180 withdrawn entries. It is a local snapshot, not a claim to track subsequent NIST updates.
+
+The default `full` strategy stores one entry per chunk, including its ID, title, control text, and Discussion. It writes `faiss_index_full_baseline/`. The embedding model has a configured 512-token input limit, so long full-control chunks may still be truncated by the tokenizer. New builds report and record the number of affected chunks in `manifest.json`.
+
+The original prototype selected a small subset to simulate corpus gaps and retained only the first 500 characters of each control's body. That was truncation: the remainder was not stored in later chunks. The current optional `chars` strategy preserves the entire assembled text across multiple chunks:
 
 ```bash
-python evaluate.py
+python ingestion.py --strategy chars --chunk-size 500 --overlap 50
 ```
 
----
+Each chunk is at most 500 characters, including a repeated control ID and title. Adjacent body segments overlap by 50 characters, with paragraph, sentence, or word boundaries preferred where possible. Metadata records source offsets and the original control ID. This configuration produces 3,431 chunks from the same 1,189 entries and writes `faiss_index_chars_500_overlap_50/`.
 
-## Project Structure
+Every piece also inherits `is_withdrawn` and the original withdrawal notice. Normal retrieval excludes withdrawn entries before selecting the top five. Rebuild old indexes using their original strategy if the reader reports missing withdrawal metadata. Historical entries remain stored; explicitly including them requires the retriever's `include_withdrawn=True` API option, and their status is included in the answer context.
 
-```
-.
-├── data/
-│   └── nist_corpus.csv              # Curated NIST 800-53 Rev.5 subset (30 controls)
-├── faiss_index/
-│   ├── index.bin                    # FAISS vector index
-│   └── metadata.pkl                 # Chunk metadata
-├── eval_results/                    # Raw evaluation output (JSON)
-├── chat_logs/
-│   └── CHAT_LOGS.md                 # AI collaboration logs (Gemini)
-├── ingestion.py                     # CSV → chunks → FAISS index
-├── retriever.py                     # Semantic search with similarity scores
-├── generator.py                     # Gap detection + Ollama generation
-├── main.py                          # Interactive CLI
-├── evaluate.py                      # Automated evaluation suite
-└── README.md
+500 characters is an experiment setting, not an established optimum, and characters are not tokens. Short chunks may improve access to later requirements but lose surrounding context. Full and character indexes can be compared using the same saved questions. Parent and enhancement entries are not merged. NIST cross-references are retained as metadata; they do not automatically become correct-answer labels.
+
+## Generate new questions with Llama
+
+Question generation is a separate command. It samples active controls from multiple families and cycles through direct questions, paraphrases, scenarios, questions spanning two controls, and questions requiring customer implementation evidence.
+
+```bash
+python generate_questions.py --count 15 --seed 42 --output eval_questions/customer_v1.json
 ```
 
----
+Use `--language ko` for Korean questions. Omit `--seed` for new random source selection. Existing output files are protected from overwriting. Each completed question is saved, so an interrupted run retains its completed questions. The file records the selected source excerpts, model, seed, and corpus hash. A seed fixes source selection; model output can still vary across versions.
 
-## Design Decisions
+Generated answers and source IDs are drafts requiring review. Each case starts with `expected: null` and `review_status: "unreviewed"`. Source ID validation catches references outside the supplied excerpts; it does not prove that an answer is correct or that a question represents actual customer traffic. Review questions for answerability, coverage, and realistic wording before treating them as a benchmark.
 
-### LLM & Embeddings
+## Evaluate a saved set
 
-- **LLM**: Ollama + `llama3` — runs entirely local, ensuring data privacy and zero API costs.
-- **Embeddings**: `all-MiniLM-L6-v2` via `sentence-transformers` (384-dim), optimized for CPU inference.
-- **Architecture**: Intentionally avoided heavy frameworks like LangChain to keep the dependency footprint minimal and ensure full reproducibility.
+Run both strategies against the same saved questions:
 
-### Corpus Construction (Intentional Gaps)
+```bash
+python evaluate.py --cases eval_questions/customer_v1.json --index-dir faiss_index_full_baseline
+python evaluate.py --cases eval_questions/customer_v1.json --index-dir faiss_index_chars_500_overlap_50
+```
 
-To evaluate the system's ability to "know what it doesn't know," I selected controls from **6 families** (configured in `ingestion.py`):
+Without `--cases`, evaluation uses the original saved 15 questions in `eval_results/test_cases_20260405_225548.json`. Those old labels were associated with the earlier corpus and require review for the current corpus. Keeping a saved set makes changes comparable; generating additional sets expands coverage.
 
-| Family | Max Selected | Description |
-|--------|-------------|-------------|
-| AC | 6 | Access Control |
-| AU | 5 | Audit and Accountability |
-| CM | 5 | Configuration Management |
-| IA | 5 | Identification and Authentication |
-| IR | 4 | Incident Response |
-| SC | 5 | System and Communications Protection |
+Reports in `eval_results/` contain answers, retrieved chunk IDs and text, withdrawal status, question intent, retrieval signals, evidence statuses, citation checks, timings, and hashes identifying the cases, index, and code. They do not calculate accuracy by default. To compare manually reviewed routing outcomes, set each case's `review_status` to `"reviewed"` and add `expected_evidence_status` using one of the evidence statuses below, then use:
 
-The CSV corpus contains 30 controls (5 per family). Since `ingestion.py` uses `head(count)` per family, the actual indexed set is **29 chunks** (AC caps at 5 due to CSV availability, IR takes only 4).
+```bash
+python evaluate.py --cases eval_questions/customer_v1.json --score-reviewed
+```
 
-Families **intentionally excluded** to simulate real-world knowledge gaps: SA, SR, PT, AT, CA, CP, MA, MP, PE, PL, PM, PS, RA, SI.
+This reports evidence-status agreement only, not answer factuality or retrieval recall. Original `expected` support labels are retained for provenance but cannot be used as evidence-status labels. The earlier approximately 87% result is not a validated score for this full corpus or either current chunking strategy. Comparisons should distinguish corpus expansion, removal of truncation, and the subsequent chunking change.
 
-Queries about missing families (e.g., Physical Security — PE, or Security Assessment — CA) correctly trigger a `NO_INFORMATION` status.
+To use character chunks interactively:
 
-### FAISS Indexing
+```bash
+python main.py --index-dir faiss_index_chars_500_overlap_50
+```
 
-- **Index**: `IndexFlatIP` (Inner Product) with L2-normalized embeddings.
-- **Rationale**: This setup yields exact cosine similarity. Since the corpus is small (29 chunks), a flat index provides perfect recall without the overhead of approximate methods like HNSW.
+## Retrieval signals and answer evidence
 
-### Gap Detection Logic
+Embeddings use `all-MiniLM-L6-v2` on CPU. L2-normalized vectors are searched with FAISS `IndexFlatIP`, providing exact cosine nearest neighbors within the stored vectors. This does not guarantee that the nearest text answers the question. The five highest-scoring active chunks are passed to generation when a requirements answer is requested.
 
-Score-based classification using cosine similarity thresholds:
+The current heuristic assigns:
 
-| Condition | Label |
-|-----------|-------|
-| top score < 0.30 | `NO_INFORMATION` |
-| top score ≥ 0.30 AND fewer than 2 docs ≥ 0.55 | `PARTIALLY_SUPPORTED` |
-| ≥ 2 docs with score ≥ 0.55 | `FULLY_SUPPORTED` |
+- `LOW_SIMILARITY` when the best similarity is below 0.30.
+- `HIGH_SIMILARITY` when at least two distinct control IDs score at least 0.55.
+- `MODERATE_SIMILARITY` otherwise.
 
-Requiring **two** high-confidence matches significantly reduces false positives where a single document might have accidental semantic overlap with the query.
+Multiple chunks from one control count as one control for this decision. Thresholds have not been recalibrated for the expanded corpus or character chunks. These labels describe a retrieval heuristic, not verified answerability or an organization's compliance.
 
-### Citations & Prompting
+Evidence status is reported separately:
 
-- The system prompt enforces strict `[Control_ID]` inline citations for every factual claim.
-- Zero-temperature generation ensures deterministic, grounded outputs.
-- If no supporting evidence is found, the model is instructed to refuse the answer rather than hallucinate control IDs.
+- `ORGANIZATION_EVIDENCE_REQUIRED`: the question asks about actual organizational implementation. The code returns a fixed limitation statement, because this corpus contains no organization-specific evidence. It does not ask the answer model to infer compliance from NIST requirements.
+- `CLARIFICATION_REQUIRED`: the question's intent could not be classified safely.
+- `INSUFFICIENT_CONTEXT`: a requirements question has low retrieval similarity.
+- `INVALID_CITATIONS`: a generated answer has no control citations or cites IDs outside the retrieved active controls; it is replaced with a review message.
+- `NEEDS_REVIEW`: a generated requirements answer passed the citation membership check. Factual support for its claims is still unverified.
 
----
+Common explicit organization-status questions in English and Korean are routed by rules. A separate local Llama classification handles other wording; invalid classification output requests clarification. Intent classification can still make mistakes and needs broader customer testing. Neither evaluation labels nor reference answer drafts are passed to the pipeline.
 
-## Evaluation Results
+Citation checking verifies exact source ID membership, not entailment or that every statement is cited. Requirements answers use only catalog context and must not assert actual organizational compliance. Temperature zero does not guarantee factuality or reproducibility. Full controls remain the default; the 500-character strategy remains an experiment.
 
-Run `python evaluate.py` to reproduce the automated report in `./eval_results/`.
+## Files
 
-15 test cases across the three coverage tiers:
+- `ingestion.py`: corpus parsing, full/character chunks, embeddings, index manifests.
+- `retriever.py`: chosen-index loading and semantic retrieval.
+- `generator.py`: question intent, evidence guards, citation checks, and Ollama answers.
+- `main.py`: interactive assistant with `--index-dir` and `--model` options.
+- `generate_questions.py`: separate Llama question generation and checkpointing.
+- `evaluate.py`: saved-question evaluation and optional reviewed-label scoring.
+- `tests/test_workflows.py`: lossless chunk coverage and question validation checks.
 
-| Expected Label | Correct | Notes |
-|----------------|---------|-------|
-| FULLY_SUPPORTED | 5/5 | High reliability for AC/IA/AU families. |
-| PARTIALLY_SUPPORTED | 4/5 | One cross-family query misclassified. |
-| NO_INFORMATION | 4/5 | High-scoring overlap in SC family triggered a false partial. |
+## AI assistance
 
-**Estimated Accuracy: ~87%**
-
-### Mismatch Analysis
-
-- **Semantic Overlap**: A query about "secure software development" (SA family, excluded) partially mapped to SC-28 (Protection of Information at Rest), resulting in `PARTIALLY_SUPPORTED` instead of `NO_INFORMATION`. This is a known limitation of purely distance-based gap detection — semantically adjacent but topically distinct controls can produce misleading scores.
-- **Ambiguity**: Queries spanning both included and excluded families occasionally lean toward `FULLY_SUPPORTED` if the included family's controls are highly relevant to the query's surface-level phrasing.
-
----
-
-## What I'd Improve with More Time
-
-- **Re-ranking**: Implement a cross-encoder re-ranker (e.g., `cross-encoder/ms-marco-MiniLM-L-6-v2`) to refine precision after the initial bi-encoder retrieval.
-- **Structured Verification**: Post-process LLM output to ensure every cited `[Control_ID]` actually exists in the retrieved context window, catching hallucinated citations.
-- **Recursive Chunking**: Improve handling of hierarchical NIST sub-controls (e.g., AC-2(1)) during ingestion to preserve parent-child relationships.
-- **Family-Aware Gap Detection**: Add a family-check layer that verifies whether the retrieved chunks actually span the required families for complex, cross-domain queries.
-- **NLI-Based Classification**: Replace or augment threshold-based gap detection with a Natural Language Inference model for more robust "PARTIALLY_SUPPORTED" classification.
-
----
-
-## AI Tool Usage
-
-In accordance with project guidelines, this project was developed with assistance from **Gemini (Google)**. Technical discussions, problem definitions, and troubleshooting logs are documented in `chat_logs/CHAT_LOGS.md`.
+The original prototype used Gemini; earlier discussions are in `chat_logs/CHAT_LOGS.md`. Subsequent corpus, runtime, chunking, and evaluation changes were developed with Codex assistance.

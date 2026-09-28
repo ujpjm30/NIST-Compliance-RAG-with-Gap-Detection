@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "requested_count": 15,
+  "generator_model": "llama3",
+  "seed": 713250547,
+  "language": "en",
+  "corpus_path": "/Users/JiMinPark/Desktop/LUME Security Take Home Project/data/NIST_SP-800-53_rev5_catalog_load.csv",
+  "corpus_sha256": "1f2a1ef9ca92e8ad235ca052467e6bc15d7b96777250b7a81f4e530cad503690",
+  "created_at_ns": 1790524400032063000,
+  "cases": [
+    {
+      "query": "What are the purposes for which information is to be used, as stated in a Privacy Notice?",
+      "question_type": "direct",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "PT-5(2)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "PT-5(2)",
+          "title": "Privacy Notice | Privacy Act Statements",
+          "family": "PT",
+          "text": "PT-5(2) Privacy Notice | Privacy Act Statements\nmation about the request for information to make an informed decision on whether or not to respond.\nPRIVACT statements provide formal notice to individuals of the authority that authorizes the solicitation of the information; whether providing the information is mandatory or voluntary; the principal purpose(s) for which the information is to be used; the published routine uses to which the information is subject; the effects on the individual, if any, of not providing all or any part of the information requested; and an appropriate citation and link to the relevant system of records notice. Federal agency personnel consult with the senior agency official for privacy and legal counsel regarding the notice provisions of the PRIVACT.",
+          "char_start": 855,
+          "char_end": 1595
+        }
+      ],
+      "reference_answer_draft": "The principal purpose(s) for which the information is to be used is provided in the Privacy Notice.",
+      "rationale": "According to PT-5(2), PRIVACT statements provide formal notice to individuals of the authority that authorizes the solicitation of the information, including the principal purpose(s) for which the information is to be used."
+    },
+    {
+      "query": "How can I trust that changes to security and privacy attributes are done correctly?",
+      "question_type": "paraphrase",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "AC-16(9)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "AC-16(9)",
+          "title": "Security and Privacy Attributes | Attribute Reassignment — Regrading Mechanisms",
+          "family": "AC",
+          "text": "AC-16(9) Security and Privacy Attributes | Attribute Reassignment — Regrading Mechanisms\nChange security and privacy attributes associated with information only via regrading mechanisms validated using [Assignment: organization-defined techniques or procedures].\nDiscussion: A regrading mechanism is a trusted process authorized to re-classify and re-label data in accordance with a defined policy exception. Validated regrading mechanisms are used by organizations to provide the requisite levels of assurance for attribute reassignment activities. The validation is facilitated by ensuring that regrading mechanisms are single purpose and of limited function. Since security and privacy attribute changes can directly affect policy enforcement actions, implementing trustworthy regrading mechanisms is necessary to help ensure that such mechanisms perform in a consistent and correct mode of operation.",
+          "char_start": 89,
+          "char_end": 904
+        }
+      ],
+      "reference_answer_draft": "Changes to security and privacy attributes associated with information should only be made through validated regrading mechanisms, which ensure single-purpose and limited-function processes to provide the necessary levels of assurance for attribute reassignment activities.",
+      "rationale": "This answer is based on AC-16(9), which emphasizes the importance of trustworthy regrading mechanisms in ensuring consistent and correct operation. The answer provides a concise summary of the requirement's implications for attribute reassignment, highlighting the need for validation to ensure correctness."
+    },
+    {
+      "query": "What security procedures should we develop and disseminate to our new employees, considering the organization's size and personnel?",
+      "question_type": "scenario",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "PS-1"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "PS-1",
+          "title": "Policy and Procedures",
+          "family": "PS",
+          "text": "PS-1 Policy and Procedures\na. Develop, document, and disseminate to [Assignment: organization-defined personnel or roles]:\n\n1. [Selection (one or more): Organization-level; Mission/business process-level; System-level] personnel security policy that:\n\n(a) Addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and\n(b) Is consistent with applicable laws, executive orders, directives, regulations, policies, standards, and guidelines; and\n2. Procedures to facilitate the implementation of the personnel security policy and the associated personnel security controls;\nb. Designate an [Assignment: organization-defined official] to manage the development, documentation, and dissemination of the personnel security policy and procedures; and\nc. Review and update the current personnel security:\n\n",
+          "char_start": 27,
+          "char_end": 873
+        }
+      ],
+      "reference_answer_draft": "The organization should develop and disseminate a personnel security policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance. This policy should also be consistent with applicable laws, executive orders, directives, regulations, policies, standards, and guidelines.",
+      "rationale": "This answer is based on PS-1, which requires organizations to develop a personnel security policy that addresses the specified aspects and is consistent with relevant authorities."
+    },
+    {
+      "query": "What information records should be retained, and for how long?",
+      "question_type": "multi_control",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "AT-4",
+        "SI-12"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "AT-4",
+          "title": "Training Records",
+          "family": "AT",
+          "text": "AT-4 Training Records\na. Document and monitor information security and privacy training activities, including security and privacy awareness training and specific role-based security and privacy training; and\nb. Retain individual training records for [Assignment: organization-defined time period].\nDiscussion: Documentation for specialized training may be maintained by individual supervisors at the discretion of the organization. The National Archives and Records Administration provides guidance on records retention for federal agencies.",
+          "char_start": 22,
+          "char_end": 542
+        },
+        {
+          "control_id": "SI-12",
+          "title": "Information Management and Retention",
+          "family": "SI",
+          "text": "SI-12 Information Management and Retention\nManage and retain information within the system and information output from the system in accordance with applicable laws, executive orders, directives, regulations, policies, standards, guidelines and operational requirements.\nDiscussion: Information management and retention requirements cover the full life cycle of information, in some cases extending beyond system disposal. Information to be retained may also include policies, procedures, plans, reports, data output from control implementation, and other types of administrative information. The National Archives and Records Administration (NARA) provides federal policy and guidance on records retention and schedules. If organizations have a records management office, consider coordinating with records management personnel. Records produced from the output of implemented controls that may require management and retention include, but are not limited to: All XX-1, AC-6(9), AT-4, AU-12, CA-2, CA-3, CA-5, CA-6, CA-7, CA-8, CA-9, CM-2, CM-3, CM-4, CM-6, CM-8, CM-9, CM-12, CM-13, CP-2, IR-6, IR-8, MA-2, MA-4, PE-2, PE-8, PE-16, PE-17, PL-2, PL-4, PL-7, PL-8, PM-5, PM-8, PM-9, PM-18, PM-21, PM-27, PM-28, PM-30, PM-31, PS-2, PS-6, PS-7, PT-2, PT-3, PT-7, RA-2, RA-3, RA-5, RA-8, SA-4, SA-5, SA-8, SA-10, SI-4, SR-2, SR-4, SR-8.",
+          "char_start": 43,
+          "char_end": 1334
+        }
+      ],
+      "reference_answer_draft": "According to AT-4, individual training records should be retained for [Assignment: organization-defined time period]. SI-12 emphasizes the importance of retaining information in accordance with applicable laws, executive orders, directives, regulations, policies, standards, guidelines, and operational requirements. Therefore, organizations should retain training records as part of their broader information management and retention practices.",
+      "rationale": "This question requires connecting both supplied controls (AT-4 and SI-12) to understand the scope of information retention."
+    },
+    {
+      "query": "Does our organization implement out-of-band authentication mechanisms under [Assignment: organization-defined conditions]?",
+      "question_type": "missing_evidence",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "IA-2(13)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "IA-2(13)",
+          "title": "Identification and Authentication (Organizational Users) | Out-of-band Authentication",
+          "family": "IA",
+          "text": "IA-2(13) Identification and Authentication (Organizational Users) | Out-of-band Authentication\nImplement the following out-of-band authentication mechanisms under [Assignment: organization-defined conditions]: [Assignment: organization-defined out-of-band authentication].\nDiscussion: Out-of-band authentication refers to the use of two separate communication paths to identify and authenticate users or devices to an information system. The first path (i.e., the in-band path) is used to identify and authenticate users or devices and is generally the path through which information flows. The second path (i.e., the out-of-band path) is used to independently verify the authentication and/or requested action. For example, a user authenticates via a notebook computer to a remote server to which the user desires access and requests some action of the server via that communication path. Subsequently, the server contacts the user via the user’s cell phone to verify that the requested action originated from the user. The user may confirm the intended action to an individual on the telephone or provide an authentication code via the telephone. Out-of-band authentication can be used to mitigate actual or suspected man-in the-middle attacks. The conditions or criteria for activation include suspicious activities, new threat indicators, elevated threat levels, or the impact or classification level of information in requested transactions.",
+          "char_start": 95,
+          "char_end": 1446
+        }
+      ],
+      "reference_answer_draft": "The evidence required to answer this question is the documentation or logs showing the implementation of organization-defined out-of-band authentication mechanisms. Currently, there is no such evidence provided.",
+      "rationale": "The excerpt from IA-2(13) mentions the importance of implementing out-of-band authentication mechanisms under specific conditions, but it does not provide the actual implementation details. To verify whether the organization has implemented this requirement, we would need to see documentation or logs that demonstrate the activation of these mechanisms."
+    },
+    {
+      "query": "What personnel or roles should be notified in the event of a fire, according to PE-13(1)?",
+      "question_type": "direct",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "PE-13(1)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "PE-13(1)",
+          "title": "Fire Protection | Detection Systems — Automatic Activation and Notification",
+          "family": "PE",
+          "text": "PE-13(1) Fire Protection | Detection Systems — Automatic Activation and Notification\nEmploy fire detection systems that activate automatically and notify [Assignment: organization-defined personnel or roles] and [Assignment: organization-defined emergency responders] in the event of a fire.\nDiscussion: Organizations can identify personnel, roles, and emergency responders if individuals on the notification list need to have access authorizations or clearances (e.g., to enter to facilities where access is restricted due to the classification or impact level of information within the facility). Notification mechanisms may require independent energy sources to ensure that the notification capability is not adversely affected by the fire.",
+          "char_start": 85,
+          "char_end": 743
+        }
+      ],
+      "reference_answer_draft": "Employ [organization-defined personnel or roles] and [organization-defined emergency responders].",
+      "rationale": "This question asks for specific information required by PE-13(1), which states that fire detection systems should automatically activate and notify certain personnel or roles in the event of a fire. The answer is limited to the text provided, as it only specifies the types of personnel or roles that need to be notified, without providing further guidance on who these individuals may be."
+    },
+    {
+      "query": "When sharing media containing classified information, what steps should we take to ensure it's downgraded correctly?",
+      "question_type": "paraphrase",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "MP-8(4)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "MP-8(4)",
+          "title": "Media Downgrading | Classified Information",
+          "family": "MP",
+          "text": "MP-8(4) Media Downgrading | Classified Information\nDowngrade system media containing classified information prior to release to individuals without required access authorizations.\nDiscussion: Downgrading of classified information uses approved sanitization tools, techniques, and procedures to transfer information confirmed to be unclassified from classified systems to unclassified media.",
+          "char_start": 51,
+          "char_end": 390
+        }
+      ],
+      "reference_answer_draft": "Downgrade system media containing classified information prior to release to individuals without required access authorizations.",
+      "rationale": "This question is paraphrasing the requirement in MP-8(4), which emphasizes the need for approved sanitization tools, techniques, and procedures to transfer information confirmed to be unclassified from classified systems to unclassified media."
+    },
+    {
+      "query": "When a significant change occurs in our supply chain, such as a new vendor being added or an existing one going out of business, how do we update the risk assessment to ensure the confidentiality, integrity, and availability of our systems?",
+      "question_type": "scenario",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "RA-3(1)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "RA-3(1)",
+          "title": "Risk Assessment | Supply Chain Risk Assessment",
+          "family": "RA",
+          "text": "RA-3(1) Risk Assessment | Supply Chain Risk Assessment\n(a) Assess supply chain risks associated with [Assignment: organization-defined systems, system components, and system services]; and\n(b) Update the supply chain risk assessment [Assignment: organization-defined frequency], when there are significant changes to the relevant supply chain, or when changes to the system, environments of operation, or other conditions may necessitate a change in the supply chain.\nDiscussion: Supply chain-related events include disruption, use of defective components, insertion of counterfeits, theft, malicious development practices, improper delivery practices, and insertion of malicious code. These events can have a significant impact on the confidentiality, integrity, or availability of a system and its information and, therefore, can also adversely impact organizational operations (including mission, functions, image, or reputation), organizational assets, individuals, other organizations, and the Nation. The supply chain-related events may be unintentional or malicious and can occur at any point during the system life cycle. An analysis of supply chain risk can help an organization identify systems or components for which additional supply chain risk mitigations are required.",
+          "char_start": 55,
+          "char_end": 1283
+        }
+      ],
+      "reference_answer_draft": "Update the supply chain risk assessment [Assignment: organization-defined frequency], when there are significant changes to the relevant supply chain, or when changes to the system, environments of operation, or other conditions may necessitate a change in the supply chain.",
+      "rationale": "This scenario highlights the importance of updating the risk assessment to ensure the confidentiality, integrity, and availability of our systems. According to RA-3(1), significant changes to the supply chain require an updated risk assessment to account for potential risks associated with the new or changed vendor."
+    },
+    {
+      "query": "What measures should be taken to ensure strong authentication during nonlocal maintenance and diagnostic activities?",
+      "question_type": "multi_control",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "MA-4",
+        "SC-7"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "MA-4",
+          "title": "Nonlocal Maintenance",
+          "family": "MA",
+          "text": "MA-4 Nonlocal Maintenance\na. Approve and monitor nonlocal maintenance and diagnostic activities;\nb. Allow the use of nonlocal maintenance and diagnostic tools only as consistent with organizational policy and documented in the security plan for the system;\nc. Employ strong authentication in the establishment of nonlocal maintenance and diagnostic sessions;\nd. Maintain records for nonlocal maintenance and diagnostic activities; and\ne. Terminate session and network connections when nonlocal maintenance is completed.\nDiscussion: Nonlocal maintenance and diagnostic activities are conducted by individuals who communicate through either an external or internal network. Local maintenance and diagnostic activities are carried out by individuals who are physically present at the system location and not communicating across a network connection. Authentication techniques used to establish nonlocal maintenance and diagnostic sessions reflect the network access requirements in IA-2. Strong authentication requires authenticators that are resistant to replay attacks and employ multi-factor authentication. Strong authenticators include PKI where certificates are stored on a token protected by a password, passphrase, or biometric. Enforcing requirements in MA-4 is accomplished, in part, by other controls. SP 800-63B provides additional guidance on strong authentication and authenticators.",
+          "char_start": 26,
+          "char_end": 1395
+        },
+        {
+          "control_id": "SC-7",
+          "title": "Boundary Protection",
+          "family": "SC",
+          "text": "SC-7 Boundary Protection\nervices are provided by network components and consolidated management systems shared by customers. These services may also include third party-provided access lines and other service elements. Such services may represent sources of increased risk despite contract security provisions. Boundary protection may be implemented as a common control for all or part of an organizational network such that the boundary to be protected is greater than a system-specific boundary (i.e., an authorization boundary).",
+          "char_start": 1363,
+          "char_end": 1869
+        }
+      ],
+      "reference_answer_draft": "Organizations should employ strong authentication in the establishment of nonlocal maintenance and diagnostic sessions, as required by MA-4. This can include using authenticators that are resistant to replay attacks and multi-factor authentication, such as PKI where certificates are stored on a token protected by a password, passphrase, or biometric. Additionally, organizations should ensure that their boundary protection measures, as described in SC-7, are implemented to prevent unauthorized access during these activities.",
+      "rationale": "This question requires the connection of both MA-4 and SC-7 controls to provide a comprehensive answer."
+    },
+    {
+      "query": "Do we actually restrict access to configuration changes using organization-defined automated mechanisms under CM-5(1)?",
+      "question_type": "missing_evidence",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "CM-5(1)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "CM-5(1)",
+          "title": "Access Restrictions for Change | Automated Access Enforcement and Audit Records",
+          "family": "CM",
+          "text": "CM-5(1) Access Restrictions for Change | Automated Access Enforcement and Audit Records\n(a) Enforce access restrictions using [Assignment: organization-defined automated mechanisms]; and\n(b) Automatically generate audit records of the enforcement actions.\nDiscussion: Organizations log system accesses associated with applying configuration changes to ensure that configuration change control is implemented and to support after-the-fact actions should organizations discover any unauthorized changes.",
+          "char_start": 88,
+          "char_end": 501
+        }
+      ],
+      "reference_answer_draft": "To determine compliance, evidence is needed showing the implementation of organization-defined automated mechanisms for enforcing access restrictions on configuration changes as described in CM-5(1)(a). Without this information, it cannot be confirmed whether access restrictions are indeed enforced.",
+      "rationale": "The requirement to enforce access restrictions using organization-defined automated mechanisms is stated in CM-5(1)(a), and audit records of the enforcement actions are expected. The absence of evidence on how these restrictions are implemented prevents a conclusive determination of compliance."
+    },
+    {
+      "query": "What criteria should an alternate storage site meet to be considered sufficiently separated from the primary storage site?",
+      "question_type": "direct",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "CP-6(1)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "CP-6(1)",
+          "title": "Alternate Storage Site | Separation from Primary Site",
+          "family": "CP",
+          "text": "CP-6(1) Alternate Storage Site | Separation from Primary Site\nIdentify an alternate storage site that is sufficiently separated from the primary storage site to reduce susceptibility to the same threats.\nDiscussion: Threats that affect alternate storage sites are defined in organizational risk assessments and include natural disasters, structural failures, hostile attacks, and errors of omission or commission. Organizations determine what is considered a sufficient degree of separation between primary and alternate storage sites based on the types of threats that are of concern. For threats such as hostile attacks, the degree of separation between sites is less relevant.",
+          "char_start": 62,
+          "char_end": 679
+        }
+      ],
+      "reference_answer_draft": "An alternate storage site is considered sufficiently separated if it reduces susceptibility to the same threats.",
+      "rationale": "According to CP-6(1), organizations determine what is considered a sufficient degree of separation between primary and alternate storage sites based on the types of threats that are of concern. This means that an alternate storage site should meet certain criteria to be considered sufficiently separated, which would depend on the specific threats being mitigated."
+    },
+    {
+      "query": "What determines the control baseline we should select for our system?",
+      "question_type": "paraphrase",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "PL-10"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "PL-10",
+          "title": "Baseline Selection",
+          "family": "PL",
+          "text": "PL-10 Baseline Selection\nSelect a control baseline for the system.\nDiscussion: Control baselines are predefined sets of controls specifically assembled to address the protection needs of a group, organization, or community of interest. Controls are chosen for baselines to either satisfy mandates imposed by laws, executive orders, directives, regulations, policies, standards, and guidelines or address threats common to all users of the baseline under the assumptions specific to the baseline. Baselines represent a starting point for the protection of individuals’ privacy, information, and information systems with subsequent tailoring actions to manage risk in accordance with mission, business, or other constraints (see PL-11). Federal control baselines are provided in SP 800-53B. The selection of a control baseline is determined by the needs of stakeholders. Stakeholder needs consider mission and business requirements as well as mandates imposed by applicable laws, executive orders, directives, policies, regulations, standards, and guidelines. For example, the control baselines in SP 800-53B are based on the requirements from FISMA and PRIVACT. ",
+          "char_start": 25,
+          "char_end": 1161
+        }
+      ],
+      "reference_answer_draft": "A control baseline is determined by the needs of stakeholders, considering mission and business requirements as well as mandates imposed by applicable laws, executive orders, directives, policies, regulations, standards, and guidelines.",
+      "rationale": "This answer is based on the excerpt from PL-10, which states that the selection of a control baseline is determined by the needs of stakeholders. This means that our organization's specific requirements, industry standards, and regulatory obligations will guide the choice of control baseline for our system."
+    },
+    {
+      "query": "When conducting penetration testing on our system, what is required to ensure that the testers are independent and impartial?",
+      "question_type": "scenario",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "CA-8(1)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "CA-8(1)",
+          "title": "Penetration Testing | Independent Penetration Testing Agent or Team",
+          "family": "CA",
+          "text": "CA-8(1) Penetration Testing | Independent Penetration Testing Agent or Team\nEmploy an independent penetration testing agent or team to perform penetration testing on the system or system components.\nDiscussion: Independent penetration testing agents or teams are individuals or groups who conduct impartial penetration testing of organizational systems. Impartiality implies that penetration testing agents or teams are free from perceived or actual conflicts of interest with respect to the development, operation, or management of the systems that are the targets of the penetration testing. CA-2(1) provides additional information on independent assessments that can be applied to penetration testing.",
+          "char_start": 76,
+          "char_end": 704
+        }
+      ],
+      "reference_answer_draft": "Employ an independent penetration testing agent or team to perform penetration testing on the system. This implies that the testers are free from perceived or actual conflicts of interest with respect to the development, operation, or management of the system.",
+      "rationale": "This requirement is based on CA-8(1), which emphasizes the importance of impartiality in penetration testing agents or teams. The answer highlights the need for independence and lack of conflict of interest to ensure the effectiveness of the penetration testing."
+    },
+    {
+      "query": "When reviewing and analyzing audit records, what measures should be taken to ensure that monitoring devices are strategically located and deployed as part of an established organization-wide security architecture?",
+      "question_type": "multi_control",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "SI-4",
+        "AU-6"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "SI-4",
+          "title": "System Monitoring",
+          "family": "SI",
+          "text": "SI-4 System Monitoring\nection software, scanning tools, audit record monitoring software, and network monitoring software.\nDepending on the security architecture, the distribution and configuration of monitoring devices may impact throughput at key internal and external boundaries as well as at other locations across a network due to the introduction of network throughput latency. If throughput management is needed, such devices are strategically located and deployed as part of an established organization-wide security architecture. Strategic locations for monitoring devices include selected perimeter locations and near key servers and server farms that support critical applications. Monitoring devices are typically employed at the managed interfaces associated with controls SC-7 and AC-17. The information collected is a function of the organizational monitoring objectives and the capability of systems to support such objectives. Specific types of transactions of interest include Hypertext Transfer Protocol (HTTP) traffic that bypasses HTTP proxies. System monitoring is an integral part of organizational continuous monitoring and incident response programs, and output from system monitoring serves as input to those programs. ",
+          "char_start": 1904,
+          "char_end": 3126
+        },
+        {
+          "control_id": "AU-6",
+          "title": "Audit Record Review, Analysis, and Reporting",
+          "family": "AU",
+          "text": "AU-6 Audit Record Review, Analysis, and Reporting\nctivities, the review or analysis may be carried out by other organizations granted such authority. The frequency, scope, and/or depth of the audit record review, analysis, and reporting may be adjusted to meet organizational needs based on new information received.",
+          "char_start": 1390,
+          "char_end": 1656
+        }
+      ],
+      "reference_answer_draft": "Monitoring devices should be strategically located and deployed as part of an established organization-wide security architecture to ensure effective system monitoring, with consideration given to throughput management at key internal and external boundaries [1]. This is especially important when reviewing and analyzing audit records, as specified in AU-6. Strategic locations for monitoring devices include selected perimeter locations and near key servers and server farms that support critical applications.",
+      "rationale": "This question cites both SI-4 and AU-6 to emphasize the importance of system monitoring in the context of audit record review, analysis, and reporting."
+    },
+    {
+      "query": "Does our organization actually implement the requirement to define security-relevant hardware, software, and firmware for systems, system components, or services under SA-17(2)?",
+      "question_type": "missing_evidence",
+      "expected": null,
+      "review_status": "unreviewed",
+      "source_control_ids": [
+        "SA-17(2)"
+      ],
+      "source_excerpts": [
+        {
+          "control_id": "SA-17(2)",
+          "title": "Developer Security and Privacy Architecture and Design | Security-relevant Components",
+          "family": "SA",
+          "text": "SA-17(2) Developer Security and Privacy Architecture and Design | Security-relevant Components\nRequire the developer of the system, system component, or system service to:\n\n(a) Define security-relevant hardware, software, and firmware; and\n(b) Provide a rationale that the definition for security-relevant hardware, software, and firmware is complete.\nDiscussion: The security-relevant hardware, software, and firmware represent the portion of the system, component, or service that is trusted to perform correctly to maintain required security properties.",
+          "char_start": 95,
+          "char_end": 556
+        }
+      ],
+      "reference_answer_draft": "The evidence missing to determine compliance is a definition of security-relevant hardware, software, and firmware, as well as a rationale that the definition is complete. Without this information, it cannot be verified if the requirement has been met.",
+      "rationale": "This question asks about the actual implementation of the requirement, not just whether the organization has documented or planned to implement it."
+    }
+  ]
+}
